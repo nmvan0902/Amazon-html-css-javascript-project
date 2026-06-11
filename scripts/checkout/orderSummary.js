@@ -6,6 +6,7 @@ import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOption.js
 import { renderPaymentSummary } from "./paymentSummary.js";
 
 export function renderOrderSummary() {
+  console.log('hello')
   let cartSummaryHTML = "";
   cart.forEach((cartItem) => {
     const productId = cartItem.productId;
