@@ -3,7 +3,42 @@ import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 // import '../data/backend-practice.js'
 
-loadProducts(() => {
+function loadCart(fun) {
+  console.log("load cart");
+}
+
+Promise.all([
+  new Promise((resolve) => {
+    loadProducts(() => {
+      resolve("value1");
+    });
+  }),
+
+  new Promise((resolve) => {
+    loadCart(() => {
+      resolve();
+    });
+  }),
+]).then((values) => {
+  console.log(values);
   renderOrderSummary();
   renderPaymentSummary();
 });
+
+// new Promise((resolve) => {
+//   loadProducts(() => {
+//     resolve("value1");
+//   });
+// })
+//   .then((value) => {
+//     console.log(value);
+//     return new Promise((resolve) => {
+//       loadCart(() => {
+//         resolve();
+//       });
+//     });
+//   })
+//   .then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+//   });
