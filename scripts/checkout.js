@@ -8,23 +8,28 @@ function loadCart(fun) {
   fun();
 }
 
-async function loadPage(){
-  console.log('load page');
+async function loadPage() {
+  try {
+    //throw 'error1';
 
-  await loadProductsFetch();
+    await loadProductsFetch();
 
-  const value = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve('value3');
-    })
-  })
-  console.log(value);
+    const value = await new Promise((resolve, reject) => {
+      // throw 'error2';
+      loadCart(() => {
+        // reject('error3');
+        resolve("value3");
+      });
+    });
+  } catch (error) {
+    console.log('Unexpected error');
+  }
 
   renderOrderSummary();
   renderPaymentSummary();
 }
 
-loadPage()
+loadPage();
 // Promise.all([
 //   new Promise((resolve) => {
 //     loadProducts(() => {

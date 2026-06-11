@@ -19,6 +19,8 @@ export function loadProductsFetch(){
     return response.json();
   }).then((productsData) => {
     products = productsData;
+  }).catch((error) => {
+    console.log('Unexpected error. Please try again later.');
   });
   
   return promise;
@@ -31,6 +33,10 @@ export function loadProducts(fun){
     products = JSON.parse(xhr.response);
     console.log(products);
     fun();
+  })
+
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error. Please try again later.');
   })
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
