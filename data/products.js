@@ -10,7 +10,19 @@ export function getProduct(productId) {
   return matchingProduct;
 }
 
+
+
 export let products = [];
+
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
+    return response.json();
+  }).then((productsData) => {
+    products = productsData;
+  });
+  
+  return promise;
+}
 
 export function loadProducts(fun){
   const xhr = new XMLHttpRequest();
